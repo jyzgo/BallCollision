@@ -123,9 +123,9 @@ public class LevelMgr : MonoBehaviour {
         }
 
     }
-    const int CELL_MAX_NUM = 100;
-    const int BALL_MAX_NUM = 30;
-    const int BALL_ITEM_NUM = 10;
+    const int CELL_MAX_NUM = 20;
+    const int BALL_MAX_NUM = 5;
+    const int BALL_ITEM_NUM = 5;
 
     #region BallItem
 
@@ -232,7 +232,7 @@ public class LevelMgr : MonoBehaviour {
         CellRoot.position = Vector3.zero;
 
 
-        LoadLvFromFile(lvid);
+        StartGame();
         
 
 
@@ -274,116 +274,93 @@ public class LevelMgr : MonoBehaviour {
     }
 
     public Text lvText;
-    public void IncreaseLv(int c)
-    {
-        lvid += c;
-        if (lvid < 0)
-        {
-            lvid = 6;
-        }
 
-        if (lvid > 6)
-        {
-            lvid = 0;
-        }
-        if (lvid == 0)
-        {
-            lvText.text = "Random";
-        }
-        else
-        {
-            lvText.text = lvid.ToString();
-        }
-    }
     const int MAX_LV = 6;
-    int lvid = 0;
-    void LoadLvFromFile(int n, string path = "level/lv")
+
+    int _genRow = 0;
+    void GenCells()
     {
-        lvid = n;
 
-        TextAsset lvTex = Resources.Load<TextAsset>(path + n.ToString());
-        if (lvTex != null)
+        for (int i = 0; i < 7; i++)
         {
-            var levelStr = lvTex.text;
-
-            int index = 0;
-            
-            string[] lines = levelStr.Split(new string[] { "\n" }, StringSplitOptions.None);
-            var conf = lines[0].Split(new string[] { "," }, StringSplitOptions.None);
-            initLvConf(conf);
-            for (int i = lines.Length - 2; i >0; i--)
+            int hp = MTRandom.GetRandomInt(-1 - _genRow / 26 * 7, 3 + _genRow  * 7/ 5);
+            if (hp != 0)
             {
-                var curLine = lines[i].Split(new string[] { "," }, StringSplitOptions.None);
-
-                for (int j = 0; j < curLine.Length; j++)
+                int r = MTRandom.GetRandomInt(1, 10);
+                if (r % 2 != 0)
                 {
-                    int hp = 0;
-                    if (curLine[j] != "")
+                    GameObject gb = null;
+                    if (hp > 0)
                     {
-                        hp = Convert.ToInt32(curLine[j]);
-                    }
-                    if (hp != 0)
-                    {
-                        GameObject gb = null;
-                        if (hp > 0)
+                        var cell = GetUnusedCell();
+                        gb = cell.gameObject;
+
+
+                        maxScore += hp;
+                        cell.Init(hp);
+                        if (!_cellDict.ContainsKey(gb.GetInstanceID()))
                         {
-                            var cell = GetUnusedCell();
-                            gb = cell.gameObject;
-
-
-                            maxScore += hp;
-                            cell.Init(hp);
                             _cellDict.Add(gb.GetInstanceID(), cell);
                         }
-                        else
-                        {
-                            var ballItem = GetUnusedBallItem();
-                            gb = ballItem.gameObject;
-                        }
-                        gb.transform.SetParent(CellRoot);
-                        gb.transform.localPosition = new Vector3(minX + 0.2f + CELL_SIDE * (index % 7), 0f + ((index) / 7 + 3) * CELL_SIDE, 0);
-                        gb.SetActive(true);
                     }
-                    index++;
+                    else
+                    {
+                        var ballItem = GetUnusedBallItem();
+                        gb = ballItem.gameObject;
+                    }
+                    gb.transform.SetParent(CellRoot);
+                    gb.transform.localPosition = new Vector3(minX + 0.2f + CELL_SIDE * i, 0f + (_genRow + 3) * CELL_SIDE, 0);
+                    gb.SetActive(true);
+
                 }
 
             }
-
         }
-        else
+
+       
+        
+
+        _genRow++;
+    }
+    void StartGame()
+    {
+        for (int i = 0; i < 4; i++)
         {
-            for (int i = 0; i < 300; i++)
-            {
-                int hp = MTRandom.GetRandomInt(-1 - i / 26, 3 + i / 5);
-                if (hp != 0)
-                {
-                    int r = MTRandom.GetRandomInt(1, 10);
-                    if (r % 2 != 0)
-                    {
-                        GameObject gb = null;
-                        if (hp > 0)
-                        {
-                            var cell = GetUnusedCell();
-                            gb = cell.gameObject;
-
-
-                            maxScore += hp;
-                            cell.Init(hp);
-                            _cellDict.Add(gb.GetInstanceID(), cell);
-                        }
-                        else
-                        {
-                            var ballItem = GetUnusedBallItem();
-                            gb = ballItem.gameObject;
-                        }
-                        gb.transform.SetParent(CellRoot);
-                        gb.transform.localPosition = new Vector3(minX + 0.2f + CELL_SIDE * (i % 7), 0f + ((i) / 7 + 3) * CELL_SIDE, 0);
-                        gb.SetActive(true);
-                    }
-                }
-            }
-
+            GenCells();
         }
+
+            //for (int i = 0; i < 300; i++)
+            //{
+            //    int hp = MTRandom.GetRandomInt(-1 - i / 26, 3 + i / 5);
+            //    if (hp != 0)
+            //    {
+            //        int r = MTRandom.GetRandomInt(1, 10);
+            //        if (r % 2 != 0)
+            //        {
+            //            GameObject gb = null;
+            //            if (hp > 0)
+            //            {
+            //                var cell = GetUnusedCell();
+            //                gb = cell.gameObject;
+
+
+            //                maxScore += hp;
+            //                cell.Init(hp);
+            //                _cellDict.Add(gb.GetInstanceID(), cell);
+            //            }
+            //            else
+            //            {
+            //                var ballItem = GetUnusedBallItem();
+            //                gb = ballItem.gameObject;
+            //            }
+            //            gb.transform.SetParent(CellRoot);
+            //            gb.transform.localPosition = new Vector3(minX + 0.2f + CELL_SIDE * (i % 7), 0f + ((i) / 7 + 3) * CELL_SIDE, 0);
+            //            gb.SetActive(true);
+            //        }
+            //    }
+            //}
+
+        
         UpdateBallCount();
 
     }
@@ -524,6 +501,7 @@ public class LevelMgr : MonoBehaviour {
     const float MOVE_CELL_TIME = 0.4f;
     IEnumerator CellMoving_Enter()
     {
+        GenCells();
         
         CellRoot.gameObject.RunAction(new MTMoveBy(MOVE_CELL_TIME * moveDownConf, new Vector3(0, -CELL_SIDE * moveDownConf, 0)));
         yield return new WaitForSeconds(MOVE_CELL_TIME * moveDownConf);
