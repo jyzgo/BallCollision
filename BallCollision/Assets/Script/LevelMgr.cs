@@ -44,11 +44,15 @@ public class LevelMgr : MonoBehaviour {
 
         increaseBall++;
     }
-    
+
+    public void UpdateMoves()
+    {
+        Score.text = moveTimes.ToString();
+    }
     
     public void UpdateScore()
     {
-        Score.text = currentScore + "/" + maxScore; 
+        //Score.text = moveTimes.ToString();// currentScore + "/" + maxScore; 
     }
    public Action<bool> CtrlListeners;
 
@@ -186,6 +190,7 @@ public class LevelMgr : MonoBehaviour {
     public Transform startPos;
     private void ResetGame()
     {
+        moveTimes = 0;
         startPos.position = new Vector3(0, startPos.position.y, 0);
         var cellEn = _cellDict.GetEnumerator();
         while (cellEn.MoveNext())
@@ -233,10 +238,10 @@ public class LevelMgr : MonoBehaviour {
 
 
         StartGame();
-        
-
 
         UpdateScore();
+
+
     }
 
     public void PlayBtn_Click()
@@ -324,41 +329,12 @@ public class LevelMgr : MonoBehaviour {
     }
     void StartGame()
     {
-        for (int i = 0; i < 4; i++)
+        _genRow = -2;
+        for (int i = 0; i < 5; i++)
         {
             GenCells();
         }
 
-            //for (int i = 0; i < 300; i++)
-            //{
-            //    int hp = MTRandom.GetRandomInt(-1 - i / 26, 3 + i / 5);
-            //    if (hp != 0)
-            //    {
-            //        int r = MTRandom.GetRandomInt(1, 10);
-            //        if (r % 2 != 0)
-            //        {
-            //            GameObject gb = null;
-            //            if (hp > 0)
-            //            {
-            //                var cell = GetUnusedCell();
-            //                gb = cell.gameObject;
-
-
-            //                maxScore += hp;
-            //                cell.Init(hp);
-            //                _cellDict.Add(gb.GetInstanceID(), cell);
-            //            }
-            //            else
-            //            {
-            //                var ballItem = GetUnusedBallItem();
-            //                gb = ballItem.gameObject;
-            //            }
-            //            gb.transform.SetParent(CellRoot);
-            //            gb.transform.localPosition = new Vector3(minX + 0.2f + CELL_SIDE * (i % 7), 0f + ((i) / 7 + 3) * CELL_SIDE, 0);
-            //            gb.SetActive(true);
-            //        }
-            //    }
-            //}
 
         
         UpdateBallCount();
@@ -366,6 +342,7 @@ public class LevelMgr : MonoBehaviour {
     }
 
     int moveDownConf = 0;
+    int moveTimes = 0;
     void initLvConf(string[] conf)
     {
         ballcount = Convert.ToInt32(conf[0]);
@@ -472,6 +449,7 @@ public class LevelMgr : MonoBehaviour {
     void Playing_Enter()
     {
 
+
         if (CtrlListeners != null)
         {
             CtrlListeners(true);
@@ -502,7 +480,10 @@ public class LevelMgr : MonoBehaviour {
     IEnumerator CellMoving_Enter()
     {
         GenCells();
-        
+        moveTimes++;
+        UpdateMoves();
+
+
         CellRoot.gameObject.RunAction(new MTMoveBy(MOVE_CELL_TIME * moveDownConf, new Vector3(0, -CELL_SIDE * moveDownConf, 0)));
         yield return new WaitForSeconds(MOVE_CELL_TIME * moveDownConf);
         CheckSucess();
