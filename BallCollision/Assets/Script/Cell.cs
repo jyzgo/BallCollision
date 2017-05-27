@@ -95,7 +95,7 @@ public class Cell : MonoBehaviour
     Color or = new Color(0.627f, 0, 0.309f);
     void UpdateHp()
     {
-        UpdateColor();
+        //UpdateColor();
         if (_hp <= 0)
         {
             LevelMgr.current.Retrive(this);
@@ -122,6 +122,7 @@ public class Cell : MonoBehaviour
         _hp--;
         LevelMgr.current.AddCurrentScore();
         UpdateHp();
+        UpdateColor();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
