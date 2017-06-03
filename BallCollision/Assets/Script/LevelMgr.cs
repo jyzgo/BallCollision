@@ -107,7 +107,7 @@ public class LevelMgr : MonoBehaviour {
         maxY = max.y - r;
 
         minX = -3.5f * CELL_SIDE; // min.x + r;
-        minY = min.y;//+ r;
+        minY = -3.5f;// min.y;//+ r;
         for (int i = 0; i < CELL_MAX_NUM; i++)
         {
             var gb = Instantiate<GameObject>(CellPrefab);
@@ -134,6 +134,7 @@ public class LevelMgr : MonoBehaviour {
         }
 
         _parPool = new ComponentPool<ParticleSystem>(0, parPrefab);
+        AdMgr.ShowAdmobBanner();
 
     }
 
@@ -147,6 +148,7 @@ public class LevelMgr : MonoBehaviour {
     }
 
     public AudioSource pop;
+    public AudioClip clip;
 
     int popPitch = 0;
     const int MAX_PITCH = 60;
@@ -156,9 +158,15 @@ public class LevelMgr : MonoBehaviour {
         {
             popPitch = MAX_PITCH;
         }
+        var curSouce = SFXPool.Instance.GetUnuseSouce();
+        curSouce.clip = clip;
+        curSouce.pitch = 0.5f + 0.02f * popPitch;
+        curSouce.Play();
+        SFXPool.Instance.RetriveSource(curSouce, 0.1f);
 
-        pop.pitch = 0.5f + 0.02f * popPitch;
-        pop.Play();
+
+        //pop.pitch = 
+        //pop.Play();
 
         popPitch++;
     }
@@ -238,11 +246,11 @@ public class LevelMgr : MonoBehaviour {
         
 	}
 
-    public Transform startPos;
+   // public Transform startPos;
     private void ResetGame()
     {
         moveTimes = 0;
-        startPos.position = new Vector3(0, startPos.position.y, 0);
+     //   startPos.position = new Vector3(0, startPos.position.y, 0);
         var cellEn = _cellDict.GetEnumerator();
         while (cellEn.MoveNext())
         {

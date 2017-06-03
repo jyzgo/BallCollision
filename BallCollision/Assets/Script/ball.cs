@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ball : MonoBehaviour {
-    void Awake()
-    { }
+
     public Vector3 speed = new Vector3(0, 0.1f, 0);
 	// Use this for initialization
 	void Start () {

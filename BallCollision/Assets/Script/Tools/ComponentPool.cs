@@ -5,7 +5,7 @@ using UnityEngine;
 public class ComponentPool <T> where T: Component {
 
     GameObject _prefab;
-    public ComponentPool(int initNum, GameObject prefab)
+    public ComponentPool(int initNum, GameObject prefab,Transform parent = null)
     {
         _prefab = prefab;
         for(int i  = 0; i < initNum; i ++)
@@ -13,6 +13,9 @@ public class ComponentPool <T> where T: Component {
             var com = GenGameObject();
             Debug.Assert(com != null);
             com.gameObject.SetActive(false);
+
+            com.transform.parent = parent;
+            
             _unused.Add(com);
         }
     }
