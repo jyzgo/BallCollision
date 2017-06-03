@@ -41,6 +41,7 @@ public class LevelMgr : MonoBehaviour {
     public void IncreseBallNum(BallItem t)
     {
         Retrive(t);
+        PlayPowerUp();
 
         increaseBall++;
     }
@@ -148,17 +149,24 @@ public class LevelMgr : MonoBehaviour {
     public AudioSource pop;
 
     int popPitch = 0;
+    const int MAX_PITCH = 60;
     public void PlayPop()
     {
-        if (popPitch >= 9)
+        if (popPitch >= MAX_PITCH)
         {
-            popPitch = 9;
+            popPitch = MAX_PITCH;
         }
 
-        pop.pitch = 1 + 0.1f * popPitch;
+        pop.pitch = 0.5f + 0.02f * popPitch;
         pop.Play();
 
         popPitch++;
+    }
+
+    public AudioSource powerUp;
+    public void PlayPowerUp()
+    {
+        powerUp.Play();
     }
 
     IEnumerator Retrive(ParticleSystem sys)
