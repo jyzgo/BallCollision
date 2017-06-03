@@ -145,11 +145,20 @@ public class LevelMgr : MonoBehaviour {
         
     }
 
-    public AudioSource _pop;
+    public AudioSource pop;
 
+    int popPitch = 0;
     public void PlayPop()
     {
-        _pop.Play();
+        if (popPitch >= 9)
+        {
+            popPitch = 9;
+        }
+
+        pop.pitch = 1 + 0.1f * popPitch;
+        pop.Play();
+
+        popPitch++;
     }
 
     IEnumerator Retrive(ParticleSystem sys)
@@ -513,6 +522,7 @@ public class LevelMgr : MonoBehaviour {
     const float MOVE_CELL_TIME = 0.4f;
     IEnumerator CellMoving_Enter()
     {
+        popPitch = 0;
         GenCells();
         moveTimes++;
         UpdateMoves();
