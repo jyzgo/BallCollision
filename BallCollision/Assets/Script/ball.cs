@@ -28,6 +28,7 @@ public class ball : MonoBehaviour {
 
     public void BeBlock(Cell cell)
     {
+        LevelMgr.current.PlayPop();
         var off = transform.position - cell.transform.position;
         float x = Mathf.Abs(off.x);
         float y = Mathf.Abs(off.y);

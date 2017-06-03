@@ -198,7 +198,7 @@ PlayerSettings:
   appleDeveloperTeamID: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  androidSplashScreen: {fileID: 2800000, guid: 096fbbb7cbba3b240b9f3370d0c9083e, type: 3}
+  androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: F:/Projects/BallCollison/BallCollision/ProjectSettings/jyz.keystore
   AndroidKeyaliasName: ballcollision
   AndroidTVCompatibility: 1

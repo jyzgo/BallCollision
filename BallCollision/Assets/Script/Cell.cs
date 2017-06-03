@@ -98,6 +98,7 @@ public class Cell : MonoBehaviour
         //UpdateColor();
         if (_hp <= 0)
         {
+            LevelMgr.current.ShowPar(transform.position);
             LevelMgr.current.Retrive(this);
         }
         else

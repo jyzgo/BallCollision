@@ -61,6 +61,12 @@ public class LevelMgr : MonoBehaviour {
     public GameObject ballPrefab;
     public GameObject ballPos;
 
+    public GameObject parPrefab;
+
+    public ComponentPool<ParticleSystem> _parPool;
+
+
+
     public void Retrive(Cell cell)
     {
         cell.gameObject.SetActive(false);
@@ -96,10 +102,10 @@ public class LevelMgr : MonoBehaviour {
         max = Camera.main.ScreenToWorldPoint(max);
         min = Camera.main.ScreenToWorldPoint(min);
 
-        maxX = max.x -r;
+        maxX = 3.5f * CELL_SIDE;// max.x -r;
         maxY = max.y - r;
 
-        minX = min.x + r;
+        minX = -3.5f * CELL_SIDE; // min.x + r;
         minY = min.y;//+ r;
         for (int i = 0; i < CELL_MAX_NUM; i++)
         {
@@ -126,7 +132,35 @@ public class LevelMgr : MonoBehaviour {
             Retrive(item);
         }
 
+        _parPool = new ComponentPool<ParticleSystem>(0, parPrefab);
+
     }
+
+    public void ShowPar(Vector3 pos)
+    {
+       var par =  _parPool.GenGameObject();
+
+        par.transform.position = pos;
+        StartCoroutine(Retrive(par));
+        
+    }
+
+    public AudioSource _pop;
+
+    public void PlayPop()
+    {
+        _pop.Play();
+    }
+
+    IEnumerator Retrive(ParticleSystem sys)
+    {
+        yield return new WaitForSeconds(0.3f);
+        var em = sys.emission;
+        em.enabled= false;
+        Destroy(sys.gameObject,1f);
+    }
+
+
     const int CELL_MAX_NUM = 20;
     const int BALL_MAX_NUM = 5;
     const int BALL_ITEM_NUM = 5;
@@ -314,7 +348,7 @@ public class LevelMgr : MonoBehaviour {
                         gb = ballItem.gameObject;
                     }
                     gb.transform.SetParent(CellRoot);
-                    gb.transform.localPosition = new Vector3(minX + 0.2f + CELL_SIDE * i, 0f + (_genRow + 3) * CELL_SIDE, 0);
+                    gb.transform.localPosition = new Vector3(-3f * CELL_SIDE  + CELL_SIDE * i, 0f + (_genRow + 3) * CELL_SIDE, 0);
                     gb.SetActive(true);
 
                 }
@@ -356,7 +390,7 @@ public class LevelMgr : MonoBehaviour {
             moveDownConf = Convert.ToInt32(conf[2]);
         }
 
-        float startX = minX + 0.2f + CELL_SIDE * (xIndex % 7);
+        float startX = -2.5f * CELL_SIDE; //minX + 0.2f + CELL_SIDE * (xIndex % 7);
         var curB = ballPos.transform.position;
         ballPos.transform.position = new Vector3(startX, curB.y, curB.z);
 
