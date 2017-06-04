@@ -105,31 +105,6 @@ public static class AdMgr  {
 
 
 
-		public static int bannerCount = 0;
-    public static void ShowAdmobBanner()
-    {
-        if (_bannerView != null)
-        {
-			bannerCount++;
-            _bannerView.Show();
-        }
-    }
-
-    public static void HideAdmobBanner()
-    {
-        if (_bannerView != null)
-        {
-			bannerCount--;
-			if (bannerCount <= 0) 
-			{
-				_bannerView.Hide();
-				bannerCount = 0;
-			
-			}
-           
-        }
-    }
-
 
     public static int downBannerCount = 0;
     public static void ShowDownAdmobBanner()
@@ -167,7 +142,7 @@ public static class AdMgr  {
         //        string adUnitId = "unused";
 #if UNITY_ANDROID
         string adUnitId =// MAGIC_IOS_BANNER_ID;//ZL_AND_BANNER;
-            OMG_IOS_BANNER_ID;
+            ZL_AND_BANNER;
 #elif UNITY_IOS
 
         string adUnitId = //MAGIC_IOS_BANNER_ID;//ZL_AND_BANNER;
@@ -176,14 +151,7 @@ public static class AdMgr  {
         string adUnitId = "unexpected_platform";
 #endif
 
-        // Create a 320x50 banner at the top of the screen.
-        _bannerView = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Top);
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-        // Load the banner with the request.
-        _bannerView.LoadAd(request);
 
-        _bannerView.Hide();
 
         AdRequest downRequest = new AdRequest.Builder().Build();
         _downBannerView = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Bottom);
@@ -196,7 +164,7 @@ public static class AdMgr  {
 
     }
 
-    static BannerView _bannerView;
+
     static BannerView _downBannerView;
 
 

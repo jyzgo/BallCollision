@@ -61,7 +61,7 @@ public class SettingMgr : MonoBehaviour {
 
     void Register()
     {
-        LoadDone += AdMgr.RegisterAllAd;
+       // LoadDone += AdMgr.RegisterAllAd;
       
     }
 

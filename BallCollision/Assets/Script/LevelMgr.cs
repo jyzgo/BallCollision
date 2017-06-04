@@ -134,7 +134,7 @@ public class LevelMgr : MonoBehaviour {
         }
 
         _parPool = new ComponentPool<ParticleSystem>(0, parPrefab);
-        AdMgr.ShowAdmobBanner();
+        AdMgr.ShowDownAdmobBanner();
 
     }
 
