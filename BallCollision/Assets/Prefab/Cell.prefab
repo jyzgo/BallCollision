@@ -183,9 +183,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ed2dfad3cdf683e4385090097f6771a8, type: 3}
+    m_Font: {fileID: 12800000, guid: a7f40eebb27766b44be251cda64fb20d, type: 3}
     m_FontSize: 70
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 140
@@ -227,7 +227,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 76ef740be15deca4d9ba4d5b947301be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d64f85d1a354fc4ab36c0186064b765, type: 3}
   m_Color: {r: 0.628, g: 0, b: 0.311, a: 1}
   m_FlipX: 0
   m_FlipY: 0

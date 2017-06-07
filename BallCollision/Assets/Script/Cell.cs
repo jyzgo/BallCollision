@@ -100,6 +100,7 @@ public class Cell : MonoBehaviour
         {
             LevelMgr.current.ShowPar(transform.position);
             LevelMgr.current.Retrive(this);
+
         }
         else
         {

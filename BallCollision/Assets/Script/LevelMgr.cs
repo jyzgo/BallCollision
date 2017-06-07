@@ -29,7 +29,7 @@ public class LevelMgr : MonoBehaviour {
     public Text Score;
 
     int currentScore = 0;
-    int maxScore = 0;
+
     int increaseBall = 0;
     public void AddCurrentScore()
     {
@@ -271,7 +271,7 @@ public class LevelMgr : MonoBehaviour {
         
         _cellDict.Clear();
         currentScore = 0;
-        maxScore = 0;
+
         ballcount = 1;
         moveDownConf = 1;
     }
@@ -347,38 +347,80 @@ public class LevelMgr : MonoBehaviour {
 
         for (int i = 0; i < 7; i++)
         {
-            int hp = MTRandom.GetRandomInt(-1 - _genRow / 26 * 7, 3 + _genRow  * 7/ 5);
-            if (hp != 0)
+            int n = MTRandom.GetRandomInt(0, 15);
+            GameObject gb = null;
+            
+            if (n == 0)
             {
-                int r = MTRandom.GetRandomInt(1, 10);
-                if (r % 2 != 0)
-                {
-                    GameObject gb = null;
-                    if (hp > 0)
-                    {
-                        var cell = GetUnusedCell();
-                        gb = cell.gameObject;
-
-
-                        maxScore += hp;
-                        cell.Init(hp);
-                        if (!_cellDict.ContainsKey(gb.GetInstanceID()))
-                        {
-                            _cellDict.Add(gb.GetInstanceID(), cell);
-                        }
-                    }
-                    else
-                    {
-                        var ballItem = GetUnusedBallItem();
-                        gb = ballItem.gameObject;
-                    }
-                    gb.transform.SetParent(CellRoot);
-                    gb.transform.localPosition = new Vector3(-3f * CELL_SIDE  + CELL_SIDE * i, 0f + (_genRow + 3) * CELL_SIDE, 0);
-                    gb.SetActive(true);
-
-                }
-
+                var ballItem = GetUnusedBallItem();
+                gb = ballItem.gameObject;
             }
+            else if (n > 0 && n < 11)
+            {
+                continue;
+            }
+            else
+            {
+                int hp = _genRow;               
+
+
+                if (hp <= 0)
+                {
+                    continue;
+                }
+                if (n % 2 == 0)
+                {
+                    hp *= 2;
+                }
+                var cell = GetUnusedCell();
+                gb = cell.gameObject;
+
+
+
+                cell.Init(hp);
+                if (!_cellDict.ContainsKey(gb.GetInstanceID()))
+                {
+                    _cellDict.Add(gb.GetInstanceID(), cell);
+                }
+            }
+
+                gb.transform.SetParent(CellRoot);
+                gb.transform.localPosition = new Vector3(-3f * CELL_SIDE + CELL_SIDE * i, 0f + (_genRow + 3) * CELL_SIDE, 0);
+                gb.SetActive(true);
+            
+
+            //int hp = MTRandom.GetRandomInt(-1 - _genRow / 26 * 7, 3 + _genRow  * 7/ 5);
+            //if (hp != 0)
+            //{
+            //    int r = MTRandom.GetRandomInt(1, 10);
+            //    if (r % 2 != 0)
+            //    {
+            //        GameObject gb = null;
+            //        if (hp > 0)
+            //        {
+            //            var cell = GetUnusedCell();
+            //            gb = cell.gameObject;
+
+
+                    
+            //            cell.Init(hp);
+            //            if (!_cellDict.ContainsKey(gb.GetInstanceID()))
+            //            {
+            //                _cellDict.Add(gb.GetInstanceID(), cell);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            var ballItem = GetUnusedBallItem();
+            //            gb = ballItem.gameObject;
+            //        }
+            //        gb.transform.SetParent(CellRoot);
+            //        gb.transform.localPosition = new Vector3(-3f * CELL_SIDE  + CELL_SIDE * i, 0f + (_genRow + 3) * CELL_SIDE, 0);
+            //        gb.SetActive(true);
+
+            //    }
+
+            //}
         }
 
        
@@ -388,8 +430,8 @@ public class LevelMgr : MonoBehaviour {
     }
     void StartGame()
     {
-        _genRow = -2;
-        for (int i = 0; i < 5; i++)
+        _genRow = -1;
+        for (int i = 0; i < 4; i++)
         {
             GenCells();
         }
