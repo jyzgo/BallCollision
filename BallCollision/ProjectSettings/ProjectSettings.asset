@@ -146,7 +146,7 @@ PlayerSettings:
     Android: com.ballcollision.adeve
     Standalone: unity.Adeve.BallCollision
     Tizen: com.ballcollision.adeve
-    iOS: com.ballcollision.adeve
+    iOS: com.ballcollision.thinklean
     tvOS: com.ballcollision.adeve
   buildNumber:
     iOS: 14

@@ -178,6 +178,15 @@
     <Reference Include="JsonFx.Json">
       <HintPath>Assets\Plugins\Kochava\JsonFx.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Google.VersionHandlerImpl_v1.2.59.0">
+      <HintPath>Assets\PlayServicesResolver\Editor\Google.VersionHandlerImpl_v1.2.59.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.JarResolver_v1.2.59.0">
+      <HintPath>Assets\PlayServicesResolver\Editor\Google.JarResolver_v1.2.59.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.IOSResolver_v1.2.59.0">
+      <HintPath>Assets\PlayServicesResolver\Editor\Google.IOSResolver_v1.2.59.0.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="BallCollision.csproj">
