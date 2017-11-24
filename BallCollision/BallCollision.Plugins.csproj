@@ -140,7 +140,7 @@
     <None Include="Assets\Lib\CommonLib\Shaders\SpriteMask.shader" />
     <None Include="Assets\Lib\CommonLib\Shaders\SpriteMasked.shader" />
     <None Include="Assets\Lib\CommonLib\Shaders\UIMasked.shader" />
-    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
+    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.59.0.txt" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\Plugins\Android\GoogleMobileAdsPlugin\AndroidManifest.xml" />
     <None Include="Assets\Plugins\Android\RshkAds\AndroidManifest.xml" />

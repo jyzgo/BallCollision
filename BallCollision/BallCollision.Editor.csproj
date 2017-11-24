@@ -169,12 +169,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets\Lib\CommonLib\Libraries\third_parties\newtonsoft_json\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Google.IOSResolver">
-      <HintPath>Assets\PlayServicesResolver\Editor\Google.IOSResolver.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.JarResolver">
-      <HintPath>Assets\PlayServicesResolver\Editor\Google.JarResolver.dll</HintPath>
-    </Reference>
     <Reference Include="Google.VersionHandler">
       <HintPath>Assets\PlayServicesResolver\Editor\Google.VersionHandler.dll</HintPath>
     </Reference>
@@ -218,17 +212,6 @@
     <Compile Include="Assets\Lib\CommonLib\Scripts\third_parties\spine\spine-unity\SkeletonUtility\Editor\SkeletonUtilityBoneInspector.cs" />
     <Compile Include="Assets\Lib\CommonLib\Scripts\third_parties\spine\spine-unity\SkeletonUtility\Editor\SkeletonUtilityInspector.cs" />
     <Compile Include="Assets\Lib\CommonLib\Scripts\third_parties\spine\spine-unity\SkeletonUtility\Editor\SkeletonUtilitySubmeshRendererInspector.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\AdMobDependencies.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\CommandLine.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\CommandLineDialog.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\DefaultResolver.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\IResolver.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\PlayServicesResolver.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\ResolverVer1_1.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\ResolverVer1_2.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\SampleDependencies.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\SettingsDialog.cs" />
-    <Compile Include="Assets\PlayServicesResolver\Editor\TextAreaDialog.cs" />
     <Compile Include="Assets\uBot\Editor\PlayerSettingsManager.cs" />
     <Compile Include="Assets\uBot\Editor\uBot.cs" />
   </ItemGroup>
@@ -252,7 +235,7 @@
     <None Include="Assets\Lib\CommonLib\Shaders\SpriteMask.shader" />
     <None Include="Assets\Lib\CommonLib\Shaders\SpriteMasked.shader" />
     <None Include="Assets\Lib\CommonLib\Shaders\UIMasked.shader" />
-    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
+    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.59.0.txt" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\Plugins\Android\GoogleMobileAdsPlugin\AndroidManifest.xml" />
     <None Include="Assets\Plugins\Android\RshkAds\AndroidManifest.xml" />
