@@ -8,11 +8,11 @@ using UnityEngine;
 public static class AdMgr  {
     #region Admob-------------------------
 
-    const string BALLZ_ANDROID_INTER = "ca-app-pub-6770182166257156/2533736221";
-    const string BALLZ_ANDROID_BANNER = "ca-app-pub-6770182166257156/1057003028";
+    const string BALLZ_ANDROID_INTER = "ca-app-pub-9160912623449043/2542028436";
+    const string BALLZ_ANDROID_BANNER = "ca-app-pub-9160912623449043/6776733015";
 
-    const string BALLZ_IOS_INTER = "ca-app-pub-6770182166257156/9917402222";
-    const string BALLZ_IOS_BANNER = "ca-app-pub-6770182166257156/6963935823";
+    const string BALLZ_IOS_INTER = "ca-app-pub-9160912623449043/2386061869";
+    const string BALLZ_IOS_BANNER = "ca-app-pub-9160912623449043/3699143530";
  
 
 

@@ -1,4 +1,6 @@
-﻿Shader "Custom/SpriteClipRectMask" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/SpriteClipRectMask" {
 	Properties {
 		_MainTex ("Base (RGB), Alpha (A)", 2D) = "white" {}
 		_MaskStencilRef ("Mask Stencil Ref", Range (0, 255)) = 0
@@ -59,7 +61,7 @@
 
 			v2f vert(appdata_t v) {
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.texcoord = v.texcoord;
 				o.color = v.color;
 				return o;

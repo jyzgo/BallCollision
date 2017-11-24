@@ -25,7 +25,7 @@ public class PlayerSettingsManager
     /// </summary>
     public static void AssignPlayerSettingsForAndroid()
     {
-        PlayerSettings.bundleIdentifier = PlayerSettingsConfig.BundleIdentifier_Android;
+        PlayerSettings.applicationIdentifier = PlayerSettingsConfig.BundleIdentifier_Android;
         PlayerSettings.bundleVersion = PlayerSettingsConfig.BundleVersion_Android;
         //PlayerSettings.Android.bundleVersionCode = int.Parse(PlayerSettingsConfig.BundleVersionCode_Android);
     }
@@ -35,7 +35,7 @@ public class PlayerSettingsManager
     /// </summary>
     public static void AssignPlayerSettingsForiOS()
     {
-        PlayerSettings.bundleIdentifier = PlayerSettingsConfig.BundleIdentifier_iOS;
+        PlayerSettings.applicationIdentifier = PlayerSettingsConfig.BundleIdentifier_iOS;
         PlayerSettings.bundleVersion = PlayerSettingsConfig.BundleVersion_iOS;
         PlayerSettings.iOS.buildNumber = PlayerSettingsConfig.BundleVersionCode_iOS;
     }

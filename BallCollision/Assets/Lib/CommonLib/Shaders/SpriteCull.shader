@@ -1,4 +1,6 @@
-﻿Shader "Custom/SpriteCull" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/SpriteCull" {
 	Properties {
 		_MainTex ("Base (RGB), Alpha (A)", 2D) = "white" {}
 	}
@@ -43,7 +45,7 @@
 
 			v2f vert(appdata_t v) {
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.texcoord = v.texcoord;
 				o.color = v.color;
 				return o;

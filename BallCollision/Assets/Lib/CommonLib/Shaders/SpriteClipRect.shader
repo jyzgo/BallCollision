@@ -1,4 +1,6 @@
-﻿Shader "Custom/SpriteClipRect" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/SpriteClipRect" {
 	Properties {
 		_MainTex ("Base (RGB), Alpha (A)", 2D) = "white" {}
 		_TextureX ("Texture X", Range (0, 1)) = 0
@@ -54,7 +56,7 @@
 
 			v2f vert(appdata_t v) {
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.texcoord = v.texcoord;
 				o.color = v.color;
 				return o;
